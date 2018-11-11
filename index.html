@@ -13,24 +13,121 @@
     <header></header>
 
     <section>
-        <pre>
-            <h1>Javascript</h1>
+        <h1>Javascript</h1>
+            <p>
                 Just taking a refresher course in JS for fun and hopefully to learn something new: like some ES6.
+            </p>
 
-            <h3>Variables</h3>
-            <p>
-                Var assigns a variable to function scope. 
-                Let is a block scope assignment. (es6)
-            </p>
-            <h3>Math Operators</h3>
-            <p>
-                The % means the remainder of the devision.
-            </p>
-            <h3>ES6</h3>
-            <p>
-                You can use template literal to concatenate by wrapping the string in `` and using "${somvariable}" to insert variables.
-            </p>
-        </pre>
+        <h3>Variables</h3>
+        <p>
+            Var assigns a variable to function scope, even if that function is the window(global scope). 
+                To access a global scope variable that has been re-defined inside a function scope you can use "window.someVariable" to get the original value.
+
+            Let is a block scope assignment. (es6)
+                Variables declared using 'let' are not attached to the global/window object and they only work in the scope for which they are declared.
+                Variable name declared with 'let' are "locked". You can't re-assign them to change the variable type (ex: string to array) like you can with 'var'.
+                Hoisting doesn't work for 'let'.
+
+
+            Const (es6)
+                The 'const' variable is block scoped, immutable and not attached to the window object so it isn't hoisted. 
+                You can add new properties to this object making it useful for factory functions.
+
+
+        </p>
+
+        <h3>Data Types</h3>
+        <p>
+            String
+            Number
+            Boolean
+            Date
+        </p>
+
+        <h3>Strings</h3>
+        <p>
+            var string = 'some string';
+            string.length;
+            string.indexOf('string'); 
+                returns -1 if 'string' not found
+                takes a second parameter indicating the start point of the search: string.indexOf('string', 10);
+            string.lastIndexOf('string');
+                searches from the last of the string
+            var newString = string.slice(0, 1);
+                takes two parameters starting point and ending point
+            var subString = string.substr(0, 5);
+                takes a starting point and a length as arguments and returns a new string
+                string.substring(0, 5); is same as substr but doesn't accept negative indexes
+            var replaceString = string.replace('string', 'information');
+                replaces 'string' with 'information'
+            var changeCase = string.toUpperCase() or string.toLowerCase();
+            var characterAt = string.charAt(2);
+            string.trim();
+                removes white spaces from begging and end of strings
+            string.trimLeft();
+            string.trimRight();
+            string.split(' ');
+                splits the string into an array using a designated delimiter character to mark the split
+        </p>
+
+        <h3>Scopes</h3>
+        <p>
+            Scope defines which objects, functions and variables are available in a section of code.
+        </p>
+
+        <h3>Functions</h3>
+        <p>
+            You can define a function by statement:
+                function somefunc(){}
+            or by expression:
+                var somefunc = function(){}
+            A function has code to execute in the body. There are three ways to invoke a function.
+            call: 
+            apply: 
+            bind:
+                    Closure
+            Closure is a function and the lexical environment in witch it was declared.
+            Closures are mostly functions within functions that have access to the local and parent variables but no direct access from outside the parent function.
+            In a closure the function has access to the parent function scope and all the scopes of that parent.
+            The returned function stores the data available to it at the time of invocation thereby CLOSING the variable data to modification.
+                    Lexical Scoping
+            Lexical scope means the data available at the time of declaration.
+        </p>
+
+        <h3>Math Operators</h3>
+        <p>
+            The % (modules) means the remainder of the devision.
+        </p>
+
+        <h3>AJAX</h3>
+        <p>
+            Asynchronous
+            Javascript
+            And
+            XML
+        </p>
+
+        <h3>Fetch API</h3>
+        <p>
+            Similar to JQuery AJAX
+        </p>
+
+        <h3>Javascript Promises</h3>
+        <p>
+            At their most basic, promises are a bit like event listeners.
+                A promise can only succeed or fail
+                A promise is set once(failed or succeeded) and can't be changed.
+                A promise can be:
+                    fulfilled - The action relating to the promise succeeded
+                    rejected - the action relating to the promise failed
+                    pending - Hasn't fulfilled or rejected
+                    settled - Has fulfilled or rejected
+        </p>
+
+        <h3>ES6</h3>
+        <p>
+            You can use template literal to concatenate by wrapping the string in back ticks ( `some string` ) and using ( ${somevariable} ) to insert variables.
+        </p>
     </section>
     <section id="display"></section>
 
