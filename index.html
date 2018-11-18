@@ -91,7 +91,11 @@
             In a closure the function has access to the parent function scope and all the scopes of that parent.
             The returned function stores the data available to it at the time of invocation thereby CLOSING the variable data to modification.
                     Lexical Scoping
-            Lexical scope means the data available at the time of declaration.
+            Lexical scope means the data available at the time of declaration in the current scope.
+                    Javascript OOP
+            The name of a constructor function should be capitalized.
+            ES6 uses a capitalized class name with the constructor keyword.
+            Call the constructor function with the new keyword.
         </p>
 
         <h3>Math Operators</h3>
@@ -124,9 +128,126 @@
                     settled - Has fulfilled or rejected
         </p>
 
+        <h3>Call Apply Bind</h3>
+        <h2>Quotes</h2>
+        <label for="company">Company: </label>
+        <input type="text" name="company" id="company" value="apple">
+        <br>
+        <button onclick="fetchQuote()">Get Quote Every 3 seconds</button>
+        <p>
+            BIND!
+            function fetchQuote() {
+                var company = document.getElementById('company').value;
+                let quote = new StockQuote(company);
+                setInterval(quote.getQuote.bind(quote), 3000);
+            }
+            The bind sets the scope of the setInterval to the lexical scope of the quote variable instead of the global that it normally runs in.
+
+            APPLY!
+            let nums = [10, 4, 5, 50, 1];
+            console.log(Math.min.apply(null, nums));
+
+            The first parameter is the context, in this case there is no specific context the second parameter is an array.
+
+            var person = {
+                firstName: 'Ernest',
+                lastName: 'Peterson',
+                getFullName: funciton(greeting) {
+                    return greeting + '! ' + tis.firstName + ' ' + this. lastName;
+                }
+            };
+            var person2 = {
+                firstName: 'Not',
+                lastName: 'Ernest'
+            };
+            console.log(person.getFullName('Hello'));
+            console.log(person.getFullName.apply(person2, ['Hello']));
+
+            The above applies the getFullName method to the context of person2 and passes the argument 'Hello' to it. 
+
+            CALL
+            Works the same as apply but the second parameter is a string instead of an array.
+
+            BIND
+            Bind can be used to create a function from the method:
+            var newLastName = person.getFullName.bind(person2);
+            newLastName('A big Hello to ');  // output: A big Hello to Not Ernest
+        </p>
+
+        <h3>Currying</h3>
+        <p>
+            Currying is the process of taking a function that accepts N arguments and turning it into a chained series of N functions each taking 1 argument. 
+
+            function multi(a, b){return a * b;}
+            var multi2 = multi.bind(this, 2);
+            multi2(5);
+
+            This creates a new function accepting one parameter and multiplying it by the bound parameter a.
+        </p>
+
+        <h3>Inheritance</h3>
+        <p>
+                ES5
+            To get inheritance to work you have to first call the base class(constructor).
+                function Alert(title) {
+                    this.myTitle = title || 'alert';
+                }
+                function SuccessAlert(input) {
+                    Alert.call(this, title); // calling the base class(constructor)
+                    this.type = 'success';
+                    console.log('successful exicutioin');
+                }
+            Then add the original prototype to the new class.
+                SuccessAlert.prototype = Object.create(Alert.prototype);
+            And finally re-set the prototype.
+                SuccessAlert.prototype.constructor = SuccessAlert;
+
+                ES6
+            Simplifies the code for creating prototypes for a more linear appearance.
+                class SuccessAlertES6 extends ES6Alert {
+                    constructor(someTitleData) {
+                        super(someTitleData); // calls the base class
+                        console.log(someTitleData);
+                        this.type = 'success';
+                    }
+                }
+        </p>
+
         <h3>ES6</h3>
         <p>
+            Not all browsers support es6 so use a transpiler like Babel or Typescript.
             You can use template literal to concatenate by wrapping the string in back ticks ( `some string` ) and using ( ${somevariable} ) to insert variables.
+            function StockQuote(company) {
+                this.company = company;
+                this.title = company;
+                this.showQuote = true;
+                this.quotes = {
+                    'apple': '60',
+                    'ibm': '55',
+                    'microsoft': '65'
+                };
+            }
+            StockQuote.prototype.getQuote = function() {
+                console.log(`title: ${this.title}`);
+                console.log(this.quotes[this.company]);
+            };
+            To use the class and concise methods of es6 the above is re-factored to:
+            class StockQuote {
+                constructor(company) {
+                this.company = company;
+                this.title = company;
+                this.showQuote = true;
+                this.quotes = {
+                    'apple': '60',
+                    'ibm': '55',
+                    'microsoft': '65'
+                };
+                } getQuote(){
+                    console.log(`title: ${this.title}`);
+                    console.log(this.quotes[this.company]);
+                }
+            }
+
         </p>
     </section>
     <section id="display"></section>
